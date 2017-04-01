@@ -11,8 +11,8 @@ public class Program {
         
         ReadWriteExcel RW = new ReadWriteExcel();
         
-       //RW.ProcessFile("./input", configuration);
-       //RW.WriteResultExcel("./result", "./output", "./Information/Result.xls");
+       RW.ProcessFile("./input", configuration);
+       RW.WriteResultExcel("./result", "./output", "./Information/Result.xls");
        RW.WritePeopleExcel("./input", "D:/Final1/collectionresults2/People.xls");
     }
 }

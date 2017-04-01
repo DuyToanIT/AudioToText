@@ -58,7 +58,7 @@ public class ReadWriteExcel {
     	
     	for(int i = 0 ; i < size;i++)
     	{
-    		//double start = System.currentTimeMillis();
+    		double start = System.currentTimeMillis();
     		File file = folder.listFiles()[i];
     		StreamSpeechRecognizer recognizer = new StreamSpeechRecognizer(configuration);
             InputStream stream = new FileInputStream(file);
@@ -71,8 +71,8 @@ public class ReadWriteExcel {
             }
             recognizer.stopRecognition();
             //ghi thoi gian chay
-            //double end = System.currentTimeMillis();
-            //WriteFile("TimeRun", String.valueOf((end - start)/1000));
+            double end = System.currentTimeMillis();
+            WriteFile("TimeRun", String.valueOf((end - start)/1000));
     	}
     }
 	
@@ -86,10 +86,10 @@ public class ReadWriteExcel {
     	WritableSheet sheet = writewb.getSheet(0);
     	File folderResult = new File(pathFResult);
     	File folderOutput = new File(pathFOutput);
-    	//File TimeRun = new File("TimeRun.txt");
+    	File TimeRun = new File("TimeRun.txt");
     	//size = folderResult.listFiles().length;
     	size = folderOutput.listFiles().length;
-    	//Scanner scan = new Scanner(TimeRun);
+    	Scanner scan = new Scanner(TimeRun);
     	for(int i = 0; i < size;i++)
     	{
     		try
@@ -99,16 +99,16 @@ public class ReadWriteExcel {
 	    			File result = folderResult.listFiles()[0];
 		    		File output = folderOutput.listFiles()[i];
 		    		
-		    		//double time = scan.nextDouble();
+		    		double time = scan.nextDouble();
 		    		//if(output.getName().equals(result.getName()))
 		    		{
 			    		sheet.addCell(new Number(0,i+2, i +1));
 			    		sheet.addCell(new Label(1, i+2, output.getName().substring(0,output.getName().length()-4)));
 			    		sheet.addCell(new Number(4,i+2, PercentSame(output, result)));
-			    		sheet.addCell(new Label(2,i+ 2, contentFOutput.toString()));
-			    		sheet.addCell(new Label(3,i+ 2, contentFresult.toString()));
-			    		//sheet.addCell(new Number(8,i+2, PercentSame(output, result)));
-			    		//sheet.addCell(new Number(5,i+2, time));
+			    		sheet.addCell(new Label(3,i+ 2, contentFOutput.toString()));
+			    		sheet.addCell(new Label(2,i+ 2, contentFresult.toString()));
+			    		
+			    		sheet.addCell(new Number(5,i+2, time));
 		    		}
 	    		}
     		}catch(Exception ex){}
@@ -118,6 +118,7 @@ public class ReadWriteExcel {
     	
     	writewb.write();
     	writewb.close();	
+    	wb.close();
     }
 	
 	//Ghi thong tin nguoi thu am
@@ -137,11 +138,12 @@ public class ReadWriteExcel {
 	    		sheet.addCell(new Label(1, i+2, str[1]));
 	    		sheet.addCell(new Label(2, i+2, str[2]));
 	    		sheet.addCell(new Label(3, i+2, str[3]));
-	    		sheet.addCell(new Label(4, i+2, str[4]));
+	    		sheet.addCell(new Label(4, i+2, str[4].substring(0, str[4].length()-4)));
 	    		
 	    	}
 	    	writewb.write();
 	    	writewb.close();	
+	    	wb.close();
 		}catch(Exception ex)
 		{
 			
