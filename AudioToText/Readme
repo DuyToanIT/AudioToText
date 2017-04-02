@@ -4,6 +4,7 @@ Folder result chứa nội dung văn bản đã ghi âm
 Folder Information chứa file excel đánh giá kết quả
 Cách chạy:
 Trước khi chạy:
+- Xóa file TimeRun
 - Xóa sạch các file co trong folder output
 - Copy file audio vào folder input (lưu ý file định dạng ".wav" kết quả chính xác hơn nế format mono, 16000hz, 16bit)
 - Copy nội dung văn bản ghi âm đặt vào folder result
